@@ -1,8 +1,17 @@
-# Internship project
+# User Network Activities Classification and XAI
 ## Description
-This project is for the goal of trying to distinguish different types of online user activities by using machine learning (here, k-means and neural network). For now, the model is still simple; it works for a couple of a source IP address and a destination IP address, and can only separate online activities into 3 categories: the web browsing/file downloading, online video watching, and online communication (such as video call).
-The project is written in Python 3.9 and it is recommended to use an IDE that can visualize graphs. The model use CSV reports created from MMT-Probe as input data and after being trained, it can predict which category a new activity belongs to. Before that step, the MMT-Probe takes pcap files as input to produce reports.
-Please note that at the time when this project is realized, MMT-Probe and MMT-Operator are recommended to run on Ubuntu. If you do not have a Linux machine, it is recommended to use a virtual Linux machine. More detailed instructions for Ubuntu machine are written below.
+This project aims to characterise user network activities using supervised machine learning techniques (KMeans, Keras Neural Network),
+while traditional approaches based on Deep Packet Inspection (DPI) may have difficulties for distinguishing different online user activities.
+Currently, we consider the most 3 common user activities:
+
+- Activity 1: Web browsing / File downloading
+- Activity 2: Interactive (such as video call, chatting app)
+- Activity 3: Video playback (Youtube)
+
+The model use CSV reports created from MMT-Probe as input data and after being trained, it can predict which category a new activity belongs to. 
+Before that step, the MMT-Probe takes pcap files as input to produce reports.
+
+Some slides of T5.4 of SPATIAL project: https://docs.google.com/presentation/d/13SsfhJyGGETRJsiydxo4U3QKMa1hMYrUWmpWSaXJALY/edit?usp=sharing
 
 ## Prerequisites
 
@@ -27,6 +36,8 @@ In order to install and run the project, the following steps should be followed:
     python3 ./create_features_csv.py ./all_files/ ./train_file.csv
     python3 ./create_features_csv.py ./test_files/ ./test_file.csv
     ```
+TODO: fix errors ?
+
 4. Run the code for neural network and see the result (I used Spyder IDE in this step).
 
 ## Some important notes:
@@ -37,5 +48,10 @@ In order to install and run the project, the following steps should be followed:
 [K-Means Clustering in Python: A Practical Guide – Real Python](https://realpython.com/k-means-clustering-python/)
 
 
-## Work to do
-The model is very simple, and it only works in this specific said model, so there are many ways to improve it to fit your need. Some of the ways are adding more revelent features, adding some real-time control parameters,...
+## [MD] TO TRY
+- Fix create_features_csv.py to convert pcap files into csv files
+- Add more features / real-time control parameters (currently 24 features and 3 features are useless - without data)
+- Try different AI models: XGBoost, LightGBM, ...
+- Integrate XAI methods, such as SHAP, LIME
+- Reproduce and add more datasets? more activities ?
+- Use the 5G testbed for 5G mobile user activities classification ???
