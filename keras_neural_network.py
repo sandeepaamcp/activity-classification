@@ -51,7 +51,7 @@ output_test = np.array(output_test)
 
 # define the keras model
 model = Sequential()
-model.add(Dense(12, input_shape=(21,), activation='relu'))
+model.add(Dense(12, input_shape=(24,), activation='relu'))
 model.add(Dense(8, activation='relu'))
 model.add(Dense(3, activation='sigmoid'))
 # compile the keras model
