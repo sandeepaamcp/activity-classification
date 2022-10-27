@@ -30,13 +30,12 @@ In order to install and run the project, the following steps should be followed:
     - Filter the pcaps file using Wireshark, so that there is 1 source IP and 1 destination IP for each pcap file.
     - Use MMT-Probe to produce CSV reports from those pcap files.
     - Save all files for training the model in folder "all_files", while those for testing the model in folder "test_files".
-3. Create a csv file containing all data and the features (there are 21 features) (supposing we are in the folder containing all the files):
-
+3. Create a csv file containing all data and the features (there are 21 features):
     ```sh
-    python3 ./create_features_csv.py ./all_files/ ./train_file.csv
-    python3 ./create_features_csv.py ./test_files/ ./test_file.csv
+    $ python3 parse_csv.py -i train_files -o output_train.csv
+    $ python3 parse_csv.py -i test_files -o output_test.csv
     ```
-TODO: fix errors ?
+Then, we need to label the training/testing data by adding a column 'output', for example 1, 2 or 3.
 
 4. Run the code for neural network and see the result (I used Spyder IDE in this step).
 
