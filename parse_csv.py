@@ -100,11 +100,11 @@ for pcap,list_files in processed_files.items():
                 # Only get some important data from the csv file
                 df = pd.read_csv(file_name, index_col=None, header = None, usecols=[0,3,5,6,12,14,15,17,27,28,29], sep=",") 
             except ValueError:
-                print(f"No columns to parse from file {file_name}")
+                print(f"Value error from file {file_name}")
                 value_error_files.append(file_name)
         rows[pcap] = pd.concat([df, rows[pcap]])
 
-    print(rows[pcap])
+    #print(rows[pcap])
     data = [0] * len(fields) 
     # Should add dtype='int64' to avoid some warnings
     ul_col = pd.Series(dtype='int64')    # uplink data
@@ -125,8 +125,8 @@ for pcap,list_files in processed_files.items():
         elif (val.find(TCP_PROTO_ID) != -1):
             nb_tcp += 1    
     # Add data of percentage of TCP/UDP protocol
-    data[TCP_PROTO] = nb_tcp * 100/len(proto_col)
-    data[UDP_PROTO] = nb_udp * 100/len(proto_col)
+    data[TCP_PROTO] = nb_tcp * 100 / len(proto_col)
+    data[UDP_PROTO] = nb_udp * 100 / len(proto_col)
 
     # Add data of uplink
     ul_col = pd.concat([ul_col, df.iloc[:,4]], ignore_index=True)
